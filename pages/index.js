@@ -13,11 +13,11 @@ const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 const todosList = document.querySelector(".todos__list");
 
 const openModal = (modal) => {
-  modal.classList.add(".popup_visible");
+  modal.classList.add("popup_visible");
 };
 
 const closeModal = (modal) => {
-  modal.classList.remove(".popup_visible");
+  modal.classList.remove("popup_visible");
 };
 
 const generateTodo = (data) => {

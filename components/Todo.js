@@ -42,7 +42,7 @@ if (!isNaN(dueDate.getTime())) {
   })}`;
 }
 
-    this._generatedCheckboxEl();
+    this._generateCheckboxEl();
     this._setEventListeners();
 
     return this._todoElement;

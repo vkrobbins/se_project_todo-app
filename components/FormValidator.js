@@ -9,7 +9,7 @@ class FormValidator {
         this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
         this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
     }
-}
+
 
 _showInputError(inputElement, errorMessage) {
     this._errorElementId = `#${inputElement.id}-error`;
@@ -78,6 +78,6 @@ enableValidation() {
             this._setEventListeners(); 
         }
         
-
+    }
 
 export default FormValidator;
