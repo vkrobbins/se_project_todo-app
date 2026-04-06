@@ -21,6 +21,10 @@ this._todoCheckboxEl.addEventListener("change", () => {
     });
   }
 
+getView() {
+  return this._todoElement;
+}
+
 _getTemplate() {
   return document.querySelector(this._selector).content.querySelector(".todo").cloneNode(true);
 }
@@ -54,5 +58,6 @@ _toggleCompletion() {
 
 _remove = () => {
     this._element.remove();
+}
 
 export default Todo;

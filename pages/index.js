@@ -59,6 +59,7 @@ addTodoButton.addEventListener("click", () => {
   addTodoPopup.open();
 });
 
+addTodoPopup.setEventListeners();
 
 initialTodos.forEach((item) => {
   const todo = generateTodo(item);
