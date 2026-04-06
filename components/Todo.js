@@ -44,6 +44,7 @@ if (!isNaN(dueDate.getTime())) {
     day: "numeric",
   })}`;
 }
+}
 
 _generateCheckboxEl() {
   this._checkboxEl = this._element.querySelector(".todo__completed");
@@ -58,6 +59,7 @@ _toggleCompletion() {
 
 _remove = () => {
     this._element.remove();
+}
 }
 
 export default Todo;
