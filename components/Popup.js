@@ -7,6 +7,7 @@ class Popup {
     _handleEscClose = (evt) => {
     if (evt.key === "Escape") {
     this.close();
+    }
 };
 
     open() {
@@ -22,10 +23,8 @@ class Popup {
     setEventListeners() {
     this._popupCloseBtn.addEventListener("click", () => {
     this.close();
-    }
     });
 }
-} 
-
+}
 
 export default Popup;
