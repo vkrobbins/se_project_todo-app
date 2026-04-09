@@ -17,7 +17,11 @@ const todosList = document.querySelector(".todos__list");
 const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 
 const addTodoPopup = new PopupWithForm({ popupSelector: "#add-todo-popup", 
-  handleFormSubmit: (_inputValues) => {}, 
+  handleFormSubmit: (_inputValues) => {
+    console.log("Form was submitted!");
+    console.log("Input values type:", typeof _inputValues);
+    console.log("Input values:", _inputValues);
+  }, 
 });
 
   const generateTodo = (data) => {
@@ -27,7 +31,7 @@ const addTodoPopup = new PopupWithForm({ popupSelector: "#add-todo-popup",
 };
 
 const section = new Section({
-  items: [initialTodos],
+  items: initialTodos,
   renderer: (item) => {
     const todo = generateTodo(item);
     todosList.append(todo);
@@ -36,13 +40,6 @@ const section = new Section({
 });
 
 section.renderItems();
-
-
-function  _handleEscClose(evt) {
-  if (evt.key === "Escape") {
-    addTodoPopup.close();
-  }
-}
 
 function handleCheck(completed) {
   todoCounter.updateCompleted(completed);
@@ -61,10 +58,6 @@ addTodoButton.addEventListener("click", () => {
 
 addTodoPopup.setEventListeners();
 
-initialTodos.forEach((item) => {
-  const todo = generateTodo(item);
-  todosList.append(todo);
-});
 
 const addTodoFormValidator = new FormValidator(validationConfig, addTodoForm); 
 addTodoFormValidator.enableValidation();
