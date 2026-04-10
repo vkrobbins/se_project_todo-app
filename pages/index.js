@@ -20,14 +20,16 @@ const addTodoPopup = new PopupWithForm({ popupSelector: "#add-todo-popup",
   handleFormSubmit: (_inputValues) => {
     const newTodoData = {
       id: uuidv4(),
-      title: _inputValues.title,
-      description: _inputValues.description,
+      name: _inputValues.name,   
       date: _inputValues.date,
-      completed: false
+      completed: false,
     };
     const todo = generateTodo(newTodoData);
-    todosList.append(todo);
-  }, 
+    section.addItem(todo);
+    todoCounter.updateTotal(true);
+    addTodoFormValidator.resetValidation();  
+    addTodoPopup.close();
+  },
 });
 
   const generateTodo = (data) => {
