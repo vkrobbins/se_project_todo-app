@@ -44,12 +44,12 @@ _getTemplate() {
 
 _generateNameEl() {
   this._nameEl = this._todoElement.querySelector(".todo__name");
-  this._nameEl.textContent = this._data.name;
+  this._nameEl.textContent = this._name;
 }
 
 _generateDateEl() {
 this._todoDateEl = this._todoElement.querySelector(".todo__date");
-const dueDate = new Date(this._data.date);
+const dueDate = new Date(this._date);
 if (!isNaN(dueDate.getTime())) { 
   this._todoDateEl.textContent = `Due: ${dueDate.toLocaleString("en-US", {
     year: "numeric",

@@ -18,9 +18,15 @@ const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 
 const addTodoPopup = new PopupWithForm({ popupSelector: "#add-todo-popup", 
   handleFormSubmit: (_inputValues) => {
-    console.log("Form was submitted!");
-    console.log("Input values type:", typeof _inputValues);
-    console.log("Input values:", _inputValues);
+    const newTodoData = {
+      id: uuidv4(),
+      title: _inputValues.title,
+      description: _inputValues.description,
+      date: _inputValues.date,
+      completed: false
+    };
+    const todo = generateTodo(newTodoData);
+    todosList.append(todo);
   }, 
 });
 
