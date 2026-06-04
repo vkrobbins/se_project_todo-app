@@ -43,7 +43,7 @@ _getTemplate() {
 }
 
 _generateNameEl() {
-  this._nameEl.textContent = this._name;
+  this._todoNameEl.textContent = this._name;
 }
 
 _generateDateEl() {

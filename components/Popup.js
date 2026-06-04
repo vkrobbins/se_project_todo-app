@@ -2,6 +2,10 @@ class Popup {
   constructor({ popupSelector }) {
     this._popupElement = document.querySelector(popupSelector);
     this._popupCloseBtn = this._popupElement.querySelector(".popup__close");
+
+    this._popupCloseBtn.addEventListener("click", () => {
+      this.close();
+    });
   }
 
   _handleEscClose = (evt) => {
@@ -10,6 +14,12 @@ class Popup {
     }
   };
 
+setEventListeners() {  // ← add this method inside Popup
+    this._popupCloseBtn.addEventListener("click", () => {
+      this.close();
+    });
+  }
+  
   open() {
     this._popupElement.classList.add("popup_visible");
     document.addEventListener("keyup", this._handleEscClose);
@@ -18,13 +28,6 @@ class Popup {
   close() {
     this._popupElement.classList.remove("popup_visible");
     document.removeEventListener("keyup", this._handleEscClose);
-  }
-
-this._popupCloseBtn.addEventListener("click", (evt) => {
-        if (evt.target === this._popupCloseBtn) {
-      this.close();
-        }
-    });
   }
 }
 

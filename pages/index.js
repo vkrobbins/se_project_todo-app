@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 import { initialTodos, validationConfig } from "../utils/constants.js";
 import Todo from "../components/Todo.js";
 import TodoCounter from "../components/TodoCounter.js";
-
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -15,23 +14,6 @@ const addTodoCloseBtn = addTodoPopupEl.querySelector(".popup__close");
 const todosList = document.querySelector(".todos__list");
 const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 
-const addTodoPopup = new PopupWithForm({
-  popupSelector: "#add-todo-popup",
-  handleFormSubmit: (_inputValues) => {
-    const newTodoData = {
-      id: uuidv4(),
-      name: _inputValues.name,
-      date: _inputValues.date,
-      completed: false,
-    };
-    renderTodo(newTodoData);
-
-    todoCounter.updateTotal(true);
-    addTodoFormValidator.resetValidation();
-    addTodoPopup.close();
-  },
-});
-
 const generateTodo = (data) => {
   const todo = new Todo(data, "#todo-template", handleCheck, handleDelete);
   const todoElement = todo.getView();
@@ -41,13 +23,30 @@ const generateTodo = (data) => {
 const section = new Section({
   items: initialTodos,
   renderer: (item) => {
-    renderTodo(item);
-    section.addItem(todo);
+    const todoElement = generateTodo(item);
+    section.addItem(todoElement);
   },
   containerSelector: ".todos__list",
 });
 
 section.renderItems();
+
+const addTodoPopup = new PopupWithForm({
+  popupSelector: "#add-todo-popup",
+  handleFormSubmit: (_inputValues) => {
+    const newTodoData = {
+      id: uuidv4(),
+      name: _inputValues.name,
+      date: _inputValues.date,
+      completed: false,
+    };
+    const todoElement = generateTodo(newTodoData);
+    section.addItem(todoElement);
+    todoCounter.updateTotal(true);
+    addTodoFormValidator.resetValidation();
+    addTodoPopup.close();
+  },
+});
 
 function handleCheck(completed) {
   todoCounter.updateCompleted(completed);
